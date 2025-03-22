@@ -1,0 +1,54 @@
+import { StyleSheet,Text, View } from "react-native";
+import InputContainer from "./components/InputContainer";
+import { useState } from "react";
+import ButtonType1 from "./components/buttonType1";
+import { Redirect } from "expo-router";
+
+const cadastro = async () => {
+    <Redirect href="/login" />;
+   };
+
+
+export default function Index() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [senha_2, setSenha_2] = useState("");
+
+  const style = StyleSheet.create({
+    container:{
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#8084A9",
+    padding:10
+    },
+    LoginContainer:{
+      justifyContent: "center",
+      width:"100%",
+      height:"40%",
+      backgroundColor:"#3E4465",
+      padding:10,
+      borderRadius:25
+    },
+    ButtonsContainer:{
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center",
+      margin:10
+    }
+  })
+  return (
+    <View style={style.container}>
+      <View style={style.LoginContainer}>
+        <InputContainer titulo="Nome:" value={nome} onChangeText={setNome} />
+        <InputContainer titulo="E-mail:" value={email} onChangeText={setEmail} />
+        <InputContainer titulo="Senha:" value={senha} onChangeText={setSenha} secureTextEntry />
+        <InputContainer titulo="Digite a senha novamente:" value={senha_2} onChangeText={setSenha_2} secureTextEntry />
+        <View style={style.ButtonsContainer}>
+         <ButtonType1 titulo="CADASTRAR" onPress={cadastro}></ButtonType1>
+        </View>
+      </View>
+    </View>
+  );
+}
