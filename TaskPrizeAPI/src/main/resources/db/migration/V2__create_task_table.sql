@@ -4,7 +4,7 @@ CREATE TABLE tasks(
     description TEXT NOT NULL,
     progress INTEGER NOT NULL,
     payment INTEGER NOT NULL,
-    stattus BOOLEAN NOT NULL,
+    status BOOLEAN NOT NULL,
     user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
