@@ -43,6 +43,6 @@ public class TaskService {
 
     // Obter todas as tarefas de um usuário
     public List<Task> getTasksByUserId(Long userId) {
-        return taskRepository.findByUserId(userId);
+        return taskRepository.findByUserUserId(userId);
     }
 }
