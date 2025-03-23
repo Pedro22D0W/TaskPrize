@@ -1,29 +1,36 @@
 import { StyleSheet, View } from "react-native";
 import InputContainer from "./components/InputContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "./services/task-prize-api";
 import ButtonType1 from "./components/buttonType1";
 import { router } from "expo-router";
 import { useAuth } from "@/context/AuthContext";
+import React from "react";
 
 
 
 export default function LoginPage() {
-  const { setToken } = useAuth();
+  const { token,setToken } = useAuth();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const sign = async () => {
 
-    const token = await login(email,senha)
-    console.log(token);
-      if (token) {
-        setToken(token);
-        router.push('/screens/home'); // Redireciona para a home
+    const response = await login(email,senha);
+    console.log("token de autenticacao:",response.token);
+      if (response.token) {
+        setToken(response.token);
       } else {
         alert('Falha no login');
       }
   };
+
+  useEffect(() => {
+    console.log("Token atualizado no contexto:", token);
+    if (token) {
+      router.push("/screens/home"); // Agora podemos redirecionar
+    }
+  }, [token]);
   
   const cadastro = async () => {
     router.push("/cadastro");

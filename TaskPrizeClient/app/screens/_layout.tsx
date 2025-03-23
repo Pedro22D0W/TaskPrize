@@ -10,7 +10,6 @@ export default function AppLayout() {
 
   return (
     <AuthProvider>
-      {/* A partir daqui, todos os componentes terão acesso ao contexto de autenticação */}
       <Stack />
     </AuthProvider>
   );

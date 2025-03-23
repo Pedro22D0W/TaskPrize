@@ -4,26 +4,30 @@ import { useState } from "react";
 import ButtonType1 from "./components/buttonType1";
 import { router } from "expo-router";
 import { cadastro } from "./services/task-prize-api";
+import React from "react";
 
 
 
 
 
 export default function CadastroPage() {
-  const [nome, setNome] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
 
   const signup = async () => {
     try {
-      cadastro(nome,email,senha);
-      router.push("/login");
+      const response = await cadastro(name, email, password);
+      console.log(response?.data); // Agora, se o cadastro for bem-sucedido, ele vai mostrar os dados retornados
+      if (response) {
+        router.push("/login"); // Redireciona se o cadastro foi bem-sucedido
+      } else {
+        console.log("Cadastro falhou, sem resposta válida");
+      }
     } catch (error) {
-      console.log("erro ao realizar cadastro")
+      console.log("Erro ao realizar cadastro:", error); // Exibe o erro detalhado
     }
-    
-    
-   };
+  };
   
 
   const style = StyleSheet.create({
@@ -52,9 +56,9 @@ export default function CadastroPage() {
   return (
     <View style={style.container}>
       <View style={style.LoginContainer}>
-        <InputContainer titulo="Nome:" value={nome} onChangeText={setNome} />
+        <InputContainer titulo="Nome:" value={name} onChangeText={setName} />
         <InputContainer titulo="E-mail:" value={email} onChangeText={setEmail} />
-        <InputContainer titulo="Senha:" value={senha} onChangeText={setSenha} secureTextEntry />
+        <InputContainer titulo="Senha:" value={password} onChangeText={setPassword} secureTextEntry />
         <View style={style.ButtonsContainer}>
          <ButtonType1 titulo="CADASTRAR" onPress={signup}></ButtonType1>
         </View>

@@ -2,8 +2,8 @@ import { createContext, useState, useContext, ReactNode } from "react";
 
 // Definição do tipo do contexto
 interface AuthContextType {
-  token: string;
-  setToken: (token: string) => void;
+  token: string | null; // ✅ Agora aceita null
+  setToken: (token: string | null) => void; // ✅ Agora podemos limpar o token
 }
 
 interface UserContextProps {
@@ -14,7 +14,7 @@ interface UserContextProps {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: UserContextProps) => {
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | null>(null);;
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>

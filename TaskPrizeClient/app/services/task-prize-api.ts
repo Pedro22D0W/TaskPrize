@@ -1,49 +1,49 @@
 import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
-const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const BASE_URL = "http://192.168.0.12:8080";
 
-// Interceptor para adicionar o token atualizado antes de cada requisição
-api.interceptors.request.use(
-  (config) => {
-    const { token } = useAuth(); // Obtém o token do contexto
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-const cadastro = async (nome: string, email: string, senha: string) => {
+const cadastro = async (name : string, email:string, password:string) => {
   try {
-    const response = await api.post("/cadastro", 
-      { nome, email, senha }, 
-      { headers: { "Content-Type": "application/json", }, 
-    });
-    return "";
-  } catch (error) {
-
-  }
-};
-const login = async (email: string, senha: string) => {
-  try {
-    const response = await api.post("/login", 
-     { email, senha }, 
-      { headers: { "Content-Type": "application/json", }, 
-    });
+    const response = await axios.post(
+      `${BASE_URL}/auth/register`,
+      {
+        name,
+        email,
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("Cadastro realizado com sucesso:", response.data);
     return response;
- } catch (error) {
+  } catch (error) {
+    console.error("Erro ao realizar cadastro:", error);
   }
-  return "token"
 };
 
-export { api, cadastro, login };
+const login = async (email: string, password: string) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/auth/login`,
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("login realizado com sucesso:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao realizar cadastro:", error);
+  }
+};
+
+export { cadastro, login };
