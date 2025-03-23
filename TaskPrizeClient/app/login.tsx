@@ -1,26 +1,33 @@
-import { StyleSheet,Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import InputContainer from "./components/InputContainer";
 import { useState } from "react";
-import axios from "axios";
+import { login } from "./services/task-prize-api";
 import ButtonType1 from "./components/buttonType1";
-import { Redirect, router } from "expo-router";
+import { router } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
 
-const login = async () => {
-  try {
-    //const response = await axios.get("");
-    console.log("Dados recebidos:");
-  } catch (error) {
-    console.error("Erro na requisição:", error);
-  }
-};
 
-const cadastro = async () => {
-  router.push("/cadastro");
-};
 
-export default function Index() {
+export default function LoginPage() {
+  const { setToken } = useAuth();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const sign = async () => {
+
+    const token = await login(email,senha)
+    console.log(token);
+      if (token) {
+        setToken(token);
+        router.push('/screens/home'); // Redireciona para a home
+      } else {
+        alert('Falha no login');
+      }
+  };
+  
+  const cadastro = async () => {
+    router.push("/cadastro");
+  };
 
   const style = StyleSheet.create({
     container:{
@@ -51,7 +58,7 @@ export default function Index() {
         <InputContainer titulo="E-mail:" value={email} onChangeText={setEmail} />
         <InputContainer titulo="Senha:" value={senha} onChangeText={setSenha} secureTextEntry />
         <View style={style.ButtonsContainer}>
-         <ButtonType1 titulo="ENTRAR" onPress={login}></ButtonType1>
+         <ButtonType1 titulo="ENTRAR" onPress={sign}></ButtonType1>
          <ButtonType1 titulo="CADASTRAR" onPress={cadastro}></ButtonType1>
         </View>
       </View>

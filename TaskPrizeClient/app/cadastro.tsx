@@ -1,19 +1,30 @@
-import { StyleSheet,Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import InputContainer from "./components/InputContainer";
 import { useState } from "react";
 import ButtonType1 from "./components/buttonType1";
-import { Redirect } from "expo-router";
-
-const cadastro = async () => {
-    <Redirect href="/login" />;
-   };
+import { router } from "expo-router";
+import { cadastro } from "./services/task-prize-api";
 
 
-export default function Index() {
+
+
+
+export default function CadastroPage() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [senha_2, setSenha_2] = useState("");
+
+  const signup = async () => {
+    try {
+      cadastro(nome,email,senha);
+      router.push("/login");
+    } catch (error) {
+      console.log("erro ao realizar cadastro")
+    }
+    
+    
+   };
+  
 
   const style = StyleSheet.create({
     container:{
@@ -44,9 +55,8 @@ export default function Index() {
         <InputContainer titulo="Nome:" value={nome} onChangeText={setNome} />
         <InputContainer titulo="E-mail:" value={email} onChangeText={setEmail} />
         <InputContainer titulo="Senha:" value={senha} onChangeText={setSenha} secureTextEntry />
-        <InputContainer titulo="Digite a senha novamente:" value={senha_2} onChangeText={setSenha_2} secureTextEntry />
         <View style={style.ButtonsContainer}>
-         <ButtonType1 titulo="CADASTRAR" onPress={cadastro}></ButtonType1>
+         <ButtonType1 titulo="CADASTRAR" onPress={signup}></ButtonType1>
         </View>
       </View>
     </View>
