@@ -1,0 +1,39 @@
+.cadastro-content {
+    --background: #8084A9;
+  
+    .container {
+        height: 100%;
+        display: flex;
+        justify-content: center; // centraliza horizontalmente
+        align-items: center;     // centraliza verticalmente
+        min-height: 100vh;
+    }
+
+    .input{
+        border-radius: 5px;
+        margin: 5px;
+        color: #8084A9;
+      }
+  
+    .login-box {
+      background-color: #3E4465;
+      padding: 20px;
+      border-radius: 25px;
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+    }
+  
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 16px;
+    
+        ion-button {
+          flex: 1;
+          margin: 10px;
+        }
+      }
+  }
+  

@@ -1,0 +1,25 @@
+<ion-content class="ion-padding cadastro-content" scroll-y="true" fullscreen="true">
+  <div class="container">
+    <div class="login-box">
+      <ion-item class="input" lines="none">
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input [(ngModel)]="name"></ion-input>
+      </ion-item>
+
+
+      <ion-item class="input" lines="none">
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item class="input" lines="none">
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+
+      <div class="buttons">
+        <ion-button expand="block" (click)="signup()">CADASTRAR</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

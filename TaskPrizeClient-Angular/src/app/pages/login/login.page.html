@@ -1,0 +1,22 @@
+<ion-content fullscreen="true" scroll-y="true" class="ion-padding login-content">
+  <div class="container">
+    <div class="login-box">
+      <ion-item class="input">
+        <ion-label position="stacked">E-mail:</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item class="input">
+        <ion-label position="stacked">Senha:</ion-label>
+        <ion-input [(ngModel)]="senha" type="password"></ion-input>
+      </ion-item>
+
+      <div class="buttons">
+        <ion-button expand="block" (click)="sign()">ENTRAR</ion-button>
+        <ion-button expand="block" fill="outline" (click)="signup()">CADASTRAR</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+

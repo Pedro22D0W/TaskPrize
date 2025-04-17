@@ -1,0 +1,7 @@
+{
+  "name": "TaskPrizeClient-Angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
