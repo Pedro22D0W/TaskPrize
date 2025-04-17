@@ -16,20 +16,32 @@ services:
     networks:
       - app-network
 
-  task-prize-client:
-    build: ./TaskPrizeClient
+  #task-prize-client:
+  #  build: ./TaskPrizeClient
+  #  ports:
+  #    - "8081:8081"
+  #  volumes:
+  #    - ./TaskPrizeClient:/app  # Mapear o código local para dentro do container
+  #    - /app/node_modules  # Ignorar node_modules para evitar conflito
+  #  environment:
+  #    - CHOKIDAR_USEPOLLING=true  # Necessário para que o hot-reload funcione no Docker
+  #  depends_on:
+  #    - task-prize-api
+   # networks:
+   #   - app-network
+  task-prize-client-angular:
+    build: ./TaskPrizeClient-Angular
     ports:
-      - "8081:8081"
+      - "8100:8100"
     volumes:
-      - ./TaskPrizeClient:/app  # Mapear o código local para dentro do container
-      - /app/node_modules  # Ignorar node_modules para evitar conflito
+      - ./TaskPrizeClient-Angular:/app
+      - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLLING=true  # Necessário para que o hot-reload funcione no Docker
+      - CHOKIDAR_USEPOLLING=true
     depends_on:
       - task-prize-api
     networks:
       - app-network
-
   database:
     image: postgres:15.0
     environment:

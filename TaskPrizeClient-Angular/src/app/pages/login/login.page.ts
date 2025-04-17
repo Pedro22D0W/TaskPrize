@@ -2,7 +2,7 @@ import { Component, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service'; // serviço que guarda o token
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -19,7 +19,7 @@ export class LoginPage {
   senha: string = '';
 
   constructor() {
-    // Reagir quando o token for atualizado
+    
     effect(() => {
       const token = this.auth.token();
       console.log('Token atualizado no contexto:', token);

@@ -5,16 +5,16 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8080/api'; // ajuste se necessário
+  private apiUrl = 'http://localhost:8080';
 
   constructor() {}
 
-  async signup(nome: string, email: string, senha: string) {
+  async signup(name: string, email: string, password: string) {
     try {
-      const response = await axios.post(`${this.apiUrl}/cadastro`, {
-        nome,
+      const response = await axios.post(`${this.apiUrl}/auth/register`, {
+        name,
         email,
-        senha,
+        password,
       });
       return response.data;
     } catch (error) {

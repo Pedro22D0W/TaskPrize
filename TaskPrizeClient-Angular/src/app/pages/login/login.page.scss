@@ -1,5 +1,5 @@
 .login-content {
-  --background: #8084A9; // fundo da tela
+  --background: #8084A9;
 
   .input{
     border-radius: 5px;
@@ -10,8 +10,8 @@
   .container {
     height: 100%;
     display: flex;
-    justify-content: center; // centraliza horizontalmente
-    align-items: center;     // centraliza verticalmente
+    justify-content: center;
+    align-items: center;     
     min-height: 100vh;
   }
 
