@@ -3,13 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { InputComponent } from 'src/app/components/input-component/input-component.component';
+import { FormBoxComponent } from 'src/app/components/form-box/form-box.component';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  imports: [IonicModule, FormsModule, CommonModule],
+  imports: [IonicModule, FormsModule, CommonModule,InputComponent,FormBoxComponent],
 })
 export class LoginPage {
   private auth = inject(AuthService);

@@ -4,12 +4,14 @@ import { RegisterService } from 'src/app/services/register.service';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController} from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { InputComponent } from 'src/app/components/input-component/input-component.component';
+import { FormBoxComponent } from 'src/app/components/form-box/form-box.component';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  imports: [IonicModule, FormsModule, CommonModule],
+  imports: [IonicModule, FormsModule, InputComponent,FormBoxComponent],
 })
 export class RegisterPage {
   private navCtrl = inject(NavController);
@@ -20,7 +22,7 @@ export class RegisterPage {
 
   constructor(
     private registerService: RegisterService,
-    private router: Router
+
   ) {}
 
   async signup() {

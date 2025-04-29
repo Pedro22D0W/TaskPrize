@@ -1,5 +1,9 @@
 package com.taskprize.model;
 
+
+
+import com.taskprize.dto.TaskRequestDTO;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -31,4 +35,16 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Task() {}
+
+    public Task(TaskRequestDTO taskRequestDTO, User user){
+        this.title = taskRequestDTO.title();
+        this.description = taskRequestDTO.description();
+        this.progress = taskRequestDTO.progress();
+        this.payment = taskRequestDTO.payment();
+        this.status = taskRequestDTO.status();
+        this.user = user;
+    }
 }
+

@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="container">
+  <div class="home-container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="header">
+      <div id="saldo">SALDO : {{user.balance}}</div>
+      <div id="loja">
+        <ion-button fill="clear">
+          <img src="../../assets/icon/cifrao.png" alt="loja" width="45" height="45" />
+        </ion-button>
+      </div>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- cards scrolláveis -->
+    <div class="cards-scroll-wrapper">
+        <div class="cards-container">
+          <app-task-card *ngFor="let task of tasks" [task]="task"></app-task-card>
+        </div>
+    </div>
+
+    <!-- botão fixo -->
+    <ion-button class="add-button" (click)="addTask()">+</ion-button>
+
   </div>
 </ion-content>
