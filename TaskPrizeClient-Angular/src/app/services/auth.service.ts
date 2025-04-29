@@ -18,11 +18,11 @@ export class AuthService {
     }
   }
 
-  async login(email: string, senha: string): Promise<{ token: string | null }> {
+  async login(email: string, password: string): Promise<{ token: string | null }> {
     try {
-      const response = await axios.post<{ token: string }>(`${API_URL}//auth/login`, {
+      const response = await axios.post<{ token: string }>(`${API_URL}/auth/login`, {
         email,
-        senha
+        password
       });
       return response.data;
     } catch (error) {

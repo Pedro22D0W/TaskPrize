@@ -35,3 +35,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-content{
+    --background: #8084A9;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center; // centraliza horizontalmente
+    align-items: center;     // centraliza verticalmente
+    min-height: 100vh;
+}
+
