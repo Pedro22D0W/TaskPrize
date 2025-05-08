@@ -10,7 +10,7 @@ import { TaskPrizeApiService } from '../services/task-prize-api.service';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonicModule, CommonModule, FormBoxComponent, TaskCardComponent],
+  imports: [IonicModule, CommonModule, TaskCardComponent],
 })
 export class HomePage implements OnInit {
 
@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
     try {
       this.user = await this.taskPrizeApi.getUser();
       this.tasks = await this.taskPrizeApi.getUserTasks();
+      console.log(this.user)
 
       console.log('Usuário e tasks:', this.user,this.tasks);
     } catch (error) {

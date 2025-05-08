@@ -5,7 +5,8 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class TaskPrizeApiService {
-  private apiUrl = 'http://192.168.43.175:8080';
+  
+  private apiUrl = 'http://localhost:8080';
 
   constructor() {}
 
@@ -30,6 +31,15 @@ export class TaskPrizeApiService {
       throw error;
     }
   }
+  async upDateProgress(id: any){
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.put(`${this.apiUrl}/api/tasks/updateProgress/${id}`,{}, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  }
   async getUser() {
     const token = localStorage.getItem('auth_token');
     const response = await axios.get(`${this.apiUrl}/api/users/user-details`, {
@@ -39,6 +49,7 @@ export class TaskPrizeApiService {
     });
     return response.data;
   }
+  
   async getUserTasks() {
     const token = localStorage.getItem('auth_token');
     const response = await axios.get(`${this.apiUrl}/api/tasks/user-tasks`, {

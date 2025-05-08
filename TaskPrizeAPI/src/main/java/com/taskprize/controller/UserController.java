@@ -1,6 +1,6 @@
 package com.taskprize.controller;
 
-import com.taskprize.model.Reward;
+
 import com.taskprize.model.User;
 import com.taskprize.security.TokenService;
 import com.taskprize.service.UserService;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -40,13 +39,7 @@ public class UserController {
         User updatedUser = userService.updateUser(userId, userDetails);
         return ResponseEntity.ok(updatedUser);
     }
-    @PutMapping("rescueReward")
-    public ResponseEntity<User> updateBalance(HttpServletRequest request,@RequestBody Reward reward) {
-        Long userId = tokenService.rescueUserId(request);
-        User updatedUser = userService.updateUserBalance(userId, Reward.getCusto());
-        return ResponseEntity.ok(updatedUser);
-    }
-
+   
     @DeleteMapping("")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);

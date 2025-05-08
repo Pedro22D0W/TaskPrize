@@ -1,13 +1,8 @@
 package com.taskprize.service;
-
-import com.taskprize.model.Reward;
-import com.taskprize.model.Task;
 import com.taskprize.model.User;
 import com.taskprize.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +29,8 @@ public class UserService {
     }
 
     public User updateUserBalance(Long userId, Integer payment) {
+        System.out.println("pagamento:");
+        System.out.println(payment);
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         user.setBalance(user.getBalance() + payment);
         return userRepository.save(user);

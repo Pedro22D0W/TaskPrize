@@ -3,6 +3,7 @@ package com.taskprize.controller;
 import com.taskprize.dto.TaskRequestDTO;
 import com.taskprize.model.Task;
 import com.taskprize.model.User;
+import com.taskprize.repository.TaskRepository;
 import com.taskprize.repository.UserRepository;
 import com.taskprize.security.TokenService;
 import com.taskprize.service.TaskService;
@@ -29,6 +30,8 @@ public class TaskController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private TaskRepository taskRepository;
 
     // Criar uma nova tarefa
     @PostMapping
@@ -54,12 +57,16 @@ public class TaskController {
         return ResponseEntity.ok(updatedTask);
     }
     @PutMapping("updateProgress/{taskId}")
-    public ResponseEntity<Task> updateTaskProgress(HttpServletRequest request,@PathVariable Long taskId, @RequestBody Task taskDetails) {
-        Task updatedTask = taskService.updateTaskProgress(taskId, taskDetails);
+    public ResponseEntity<Task> updateTaskProgress(HttpServletRequest request,@PathVariable Long taskId) {
+        Task updatedTask = taskService.updateTaskProgress(taskId);
+        
         if (updatedTask.getProgress() == updatedTask.getCurrent_progress()) {
             Long userId = tokenService.rescueUserId(request);
+            System.out.println(userId);
             userService.updateUserBalance(userId,updatedTask.getPayment());
             updatedTask.setStatus(true);
+            taskRepository.save(updatedTask);
+
         }
         return ResponseEntity.ok(updatedTask);
     }

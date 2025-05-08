@@ -35,14 +35,10 @@ public class TaskService {
         task.setStatus(taskDetails.getStatus());
         return taskRepository.save(task);
     }
-    public Task updateTaskProgress(Long taskId, Task taskDetails) {
+    public Task updateTaskProgress(Long taskId) {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
-        task.setTitle(taskDetails.getTitle());
-        task.setDescription(taskDetails.getDescription());
-        task.setProgress((taskDetails.getProgress() + 1));
-        task.setPayment(taskDetails.getPayment());
-        task.setStatus(taskDetails.getStatus());
+        task.setCurrent_progress((task.getCurrent_progress() + 1));
         return taskRepository.save(task);
     }
 

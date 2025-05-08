@@ -1,9 +1,5 @@
 package com.taskprize.model;
-
-
-
 import com.taskprize.dto.TaskRequestDTO;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
