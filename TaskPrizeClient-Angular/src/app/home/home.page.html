@@ -10,14 +10,14 @@
       </div>
     </div>
 
-    <!-- cards scrolláveis -->
+    
     <div class="cards-scroll-wrapper">
         <div class="cards-container">
           <app-task-card *ngFor="let task of tasks" [task]="task"></app-task-card>
         </div>
     </div>
 
-    <!-- botão fixo -->
+    
     <ion-button class="add-button" (click)="addTask()">+</ion-button>
 
   </div>

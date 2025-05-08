@@ -1,5 +1,7 @@
 package com.taskprize.service;
 
+import com.taskprize.model.Reward;
+import com.taskprize.model.Task;
 import com.taskprize.model.User;
 import com.taskprize.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,14 @@ public class UserService {
         user.setBalance(userDetails.getBalance());
         return userRepository.save(user);
     }
+
+    public User updateUserBalance(Long userId, Integer payment) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setBalance(user.getBalance() + payment);
+        return userRepository.save(user);
+    }
+
+
 
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);

@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://192.168.43.175:8080';
 
 @Injectable({
   providedIn: 'root'

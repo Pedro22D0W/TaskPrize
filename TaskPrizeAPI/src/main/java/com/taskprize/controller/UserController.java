@@ -1,5 +1,6 @@
 package com.taskprize.controller;
 
+import com.taskprize.model.Reward;
 import com.taskprize.model.User;
 import com.taskprize.security.TokenService;
 import com.taskprize.service.UserService;
@@ -37,6 +38,12 @@ public class UserController {
     @PutMapping("")
     public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User userDetails) {
         User updatedUser = userService.updateUser(userId, userDetails);
+        return ResponseEntity.ok(updatedUser);
+    }
+    @PutMapping("rescueReward")
+    public ResponseEntity<User> updateBalance(HttpServletRequest request,@RequestBody Reward reward) {
+        Long userId = tokenService.rescueUserId(request);
+        User updatedUser = userService.updateUserBalance(userId, Reward.getCusto());
         return ResponseEntity.ok(updatedUser);
     }
 

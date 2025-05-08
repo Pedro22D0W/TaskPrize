@@ -5,7 +5,7 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://192.168.43.175:8080';
 
   constructor() {}
 

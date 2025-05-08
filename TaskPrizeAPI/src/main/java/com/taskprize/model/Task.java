@@ -26,6 +26,9 @@ public class Task {
     @Column(name = "progress", nullable = false)
     private Integer progress;
 
+    @Column(name = "current_progress", nullable = false)
+    private Integer current_progress;
+
     @Column(name = "payment", nullable = false)
     private Integer payment;
 
@@ -42,6 +45,7 @@ public class Task {
         this.title = taskRequestDTO.title();
         this.description = taskRequestDTO.description();
         this.progress = taskRequestDTO.progress();
+        this.current_progress = 0;
         this.payment = taskRequestDTO.payment();
         this.status = taskRequestDTO.status();
         this.user = user;
