@@ -2,7 +2,7 @@
   <div class="home-container">
 
     <div class="header">
-      <div id="saldo">SALDO : {{user.balance}}</div>
+      <div id="saldo">SALDO : {{user?.balance}}</div>
       <div id="loja">
         <ion-button fill="clear">
           <img src="../../assets/icon/cifrao.png" alt="loja" width="45" height="45" />
@@ -10,14 +10,15 @@
       </div>
     </div>
 
-    <!-- cards scrolláveis -->
+    
     <div class="cards-scroll-wrapper">
-        <div class="cards-container">
-          <app-task-card *ngFor="let task of tasks" [task]="task"></app-task-card>
-        </div>
+      <div class="cards-container">
+        <ng-container *ngFor="let task of tasks">
+          <app-task-card *ngIf="!task.status" [task]="task"></app-task-card>
+        </ng-container>
+      </div>
     </div>
-
-    <!-- botão fixo -->
+    
     <ion-button class="add-button" (click)="addTask()">+</ion-button>
 
   </div>

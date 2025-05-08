@@ -3,10 +3,11 @@ package com.taskprize.controller;
 import com.taskprize.dto.TaskRequestDTO;
 import com.taskprize.model.Task;
 import com.taskprize.model.User;
+import com.taskprize.repository.TaskRepository;
 import com.taskprize.repository.UserRepository;
 import com.taskprize.security.TokenService;
 import com.taskprize.service.TaskService;
-
+import com.taskprize.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,10 @@ public class TaskController {
     private TokenService tokenService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TaskRepository taskRepository;
 
     // Criar uma nova tarefa
     @PostMapping
@@ -51,7 +56,20 @@ public class TaskController {
         Task updatedTask = taskService.updateTask(taskId, taskDetails);
         return ResponseEntity.ok(updatedTask);
     }
+    @PutMapping("updateProgress/{taskId}")
+    public ResponseEntity<Task> updateTaskProgress(HttpServletRequest request,@PathVariable Long taskId) {
+        Task updatedTask = taskService.updateTaskProgress(taskId);
+        
+        if (updatedTask.getProgress() == updatedTask.getCurrent_progress()) {
+            Long userId = tokenService.rescueUserId(request);
+            System.out.println(userId);
+            userService.updateUserBalance(userId,updatedTask.getPayment());
+            updatedTask.setStatus(true);
+            taskRepository.save(updatedTask);
 
+        }
+        return ResponseEntity.ok(updatedTask);
+    }
     // Deletar uma tarefa
     @DeleteMapping("/{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {

@@ -35,6 +35,12 @@ public class TaskService {
         task.setStatus(taskDetails.getStatus());
         return taskRepository.save(task);
     }
+    public Task updateTaskProgress(Long taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setCurrent_progress((task.getCurrent_progress() + 1));
+        return taskRepository.save(task);
+    }
 
     // Deletar uma tarefa
     public void deleteTask(Long taskId) {

@@ -1,0 +1,2 @@
+ALTER TABLE tasks
+ADD COLUMN current_progress INTEGER DEFAULT 0
