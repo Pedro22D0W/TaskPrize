@@ -59,6 +59,24 @@ export class TaskPrizeApiService {
     });
     return response.data;
   }
+  async getPrizes() {
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.get(`${this.apiUrl}/api/prizes/user-prizes`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  }
+  async rescuePrize(prize_id:any) {
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.delete(`${this.apiUrl}/api/prizes/${prize_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  }
 }
 
 
