@@ -1,5 +1,7 @@
 package com.taskprize.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.taskprize.dto.PrizeRequestDTO;
 import com.taskprize.model.Prize;
+import com.taskprize.model.Task;
 import com.taskprize.model.User;
 import com.taskprize.repository.PrizeRepository;
 import com.taskprize.repository.UserRepository;
@@ -81,5 +84,10 @@ public class PrizeController {
          else{
             return ResponseEntity.internalServerError().build();
          }   
+    }
+    @GetMapping("/user-prizes")
+    public List<Prize> PrizesByUserId(HttpServletRequest request) {
+        Long userId = tokenService.rescueUserId(request);
+        return prizeRepository.findByUserUserId(userId);
     }
 }

@@ -21,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'task-add',
     loadComponent: () => import('./pages/task-add/task-add.page').then( m => m.TaskAddPage)
+  },  {
+    path: 'prizes',
+    loadComponent: () => import('./pages/prizes/prizes.page').then( m => m.PrizesPage)
   },
+
 
 ];

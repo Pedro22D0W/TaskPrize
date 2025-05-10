@@ -1,0 +1,44 @@
+.task-card {
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 360px;
+  margin: auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    color: #8084A9;
+  }
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #8084A9;
+  }
+
+  .description {
+    background-color: #bdbdbd;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #8084A9;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    color: #8084A9;
+
+    .progress-button {
+      --background: #f7d674;
+      --color: #5d3f00;
+      font-size: 12px;
+      padding: 4px 8px;
+      height: 28px;
+      border-radius: 12px;
+    }
+  }
+}

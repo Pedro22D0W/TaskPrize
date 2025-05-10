@@ -42,4 +42,7 @@ export class HomePage implements OnInit {
   addTask(){
     this.navCtrl.navigateForward('task-add');
   }
+  goShop(){
+    this.navCtrl.navigateForward('prizes');
+  }
 }
