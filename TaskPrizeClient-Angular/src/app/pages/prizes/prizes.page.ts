@@ -19,15 +19,13 @@ user:any;
 prizes: any[] = [];
 private navCtrl = inject(NavController);
 private taskPrizeApi = inject(TaskPrizeApiService)
-resgatarPrize(_t14: any) {
-throw new Error('Method not implemented.');
-}
-goBack() {
-throw new Error('Method not implemented.');
-}
-addPrize() {
-  console.log("navegou") // ou outra rota que você usar
-}
+
+ goBack(){
+    this.navCtrl.navigateForward('home');
+  }
+ addPrize(){
+    this.navCtrl.navigateForward('prize-add');
+  }
 
   constructor() { }
 

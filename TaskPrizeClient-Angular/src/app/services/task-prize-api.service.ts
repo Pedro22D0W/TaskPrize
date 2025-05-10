@@ -31,6 +31,25 @@ export class TaskPrizeApiService {
       throw error;
     }
   }
+  async prize_add(title: string, description: string,cost:number) {
+    try {
+      const response = await axios.post(`${this.apiUrl}/api/prizes`,  {
+        title,
+        description,
+        cost
+      },
+        {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
+              'Content-Type': 'application/json'
+            }
+          });
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao cadastrar:', error);
+      throw error;
+    }
+  }
   async upDateProgress(id: any){
     const token = localStorage.getItem('auth_token');
     const response = await axios.put(`${this.apiUrl}/api/tasks/updateProgress/${id}`,{}, {
