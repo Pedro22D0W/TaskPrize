@@ -16,6 +16,8 @@ public class Prize {
         this.user = user;
     }
 
+    public Prize(){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prize_id")

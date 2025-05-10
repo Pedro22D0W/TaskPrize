@@ -57,7 +57,7 @@ public class PrizeController {
 
     // Atualizar uma tarefa
     @PutMapping("/{prize_id}")
-    public ResponseEntity<Void> updateTask(@PathVariable Long prize_id, @RequestBody Prize prizeDetails) {
+    public ResponseEntity<Void> updatePrize(@PathVariable Long prize_id, @RequestBody Prize prizeDetails) {
         Prize prize = prizeRepository.findById(prize_id)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
         prize.setTitle(prizeDetails.getTitle());
@@ -66,10 +66,20 @@ public class PrizeController {
         prizeRepository.save(prize);
         return ResponseEntity.ok().build();
     }
-    // Deletar uma tarefa
+
     @DeleteMapping("/{prize_id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long prize_id) {
-        prizeRepository.deleteById(prize_id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> rescuePrize(@PathVariable Long prize_id,HttpServletRequest request) {
+        Long userId = tokenService.rescueUserId(request);
+         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+         Prize prize = prizeRepository.findById(prize_id).orElseThrow(() -> new RuntimeException("Recompensa não encontrada"));
+         if (user.getBalance()>=prize.getCost()) {
+            user.setBalance(user.getBalance() - prize.getCost());
+            prizeRepository.deleteById(prize_id);
+            userRepository.save(user);  
+            return ResponseEntity.ok("Current Balance :"+ user.getBalance()); 
+         }
+         else{
+            return ResponseEntity.internalServerError().build();
+         }   
     }
 }
