@@ -1,0 +1,15 @@
+<ion-content fullscreen="true" scroll-y="true" class="ion-padding login-content">
+  <div class="container">
+    <app-form-box>
+      <app-input-component [label]="'Email'" [type]="'email'" [(model)]="email"></app-input-component>
+      <app-input-component [label]="'Senha'" [type]="'password'" [(model)]="senha"></app-input-component>
+    
+      <div class="buttons">
+        <ion-button expand="block" (click)="sign()">ENTRAR</ion-button>
+        <ion-button expand="block" fill="outline" (click)="signup()">CADASTRAR</ion-button>
+      </div>
+    </app-form-box>
+  </div>
+</ion-content>
+
+

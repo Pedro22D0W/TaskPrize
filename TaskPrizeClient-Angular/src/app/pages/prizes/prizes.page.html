@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true" class="container">
+  <div class="home-container">
+    <div class="header">
+      <div id="saldo">SALDO : {{user?.balance}}</div>
+      <div id="voltar">
+        <ion-button fill="clear" (click)="goBack()">
+          <ion-icon name="arrow-back" size="large"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="cards-scroll-wrapper">
+      <div class="cards-container">
+        <ng-container *ngFor="let prize of prizes">
+          <app-prize-card [prize]="prize"></app-prize-card>
+        </ng-container>
+      </div>
+    </div>
+    <ion-button class="add-button" (click)="addPrize()">+</ion-button>
+  </div>
+</ion-content>

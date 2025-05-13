@@ -1,0 +1,34 @@
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },
+  {
+    path: 'task-add',
+    loadComponent: () => import('./pages/task-add/task-add.page').then( m => m.TaskAddPage)
+  },  {
+    path: 'prizes',
+    loadComponent: () => import('./pages/prizes/prizes.page').then( m => m.PrizesPage)
+  },
+  {
+    path: 'prize-add',
+    loadComponent: () => import('./pages/prize-add/prize-add.page').then( m => m.PrizeAddPage)
+  },
+
+
+];

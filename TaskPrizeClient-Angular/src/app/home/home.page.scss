@@ -1,0 +1,57 @@
+.container {
+  --background: #8084A9;
+  position: relative;
+  height: 100%;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#saldo {
+  background-color: #5862a0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* wrapper com scroll apenas para os cards */
+.cards-scroll-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* cards em coluna dentro da área rolável */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 80px;
+}
+
+/* botão fixo no canto inferior direito */
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+}
+

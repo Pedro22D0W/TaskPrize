@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true" class="container">
+  <div class="home-container">
+
+    <div class="header">
+      <div id="saldo">SALDO : {{user?.balance}}</div>
+      <div id="loja">
+        <ion-button fill="clear" (click)="goShop()">
+          <img src="../../assets/icon/cifrao.png" alt="loja" width="45" height="45" />
+        </ion-button>
+      </div>
+    </div>
+
+    
+    <div class="cards-scroll-wrapper">
+      <div class="cards-container">
+        <ng-container *ngFor="let task of tasks">
+          <app-task-card *ngIf="!task.status" [task]="task"></app-task-card>
+        </ng-container>
+      </div>
+    </div>
+    
+    <ion-button class="add-button" (click)="addTask()">+</ion-button>
+
+  </div>
+</ion-content>

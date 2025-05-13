@@ -1,0 +1,14 @@
+<div class="task-card">
+  <div class="header">
+    <div class="title">{{prize?.title}}</div>
+    <span class="reward">{{prize?.cost}} $</span>
+  </div>
+
+  <div class="description">
+    {{prize?.description}}
+  </div>
+
+  <div class="footer">
+    <ion-button size="small" class="progress-button" (click)="rescuePrize()">RESGATAR</ion-button>
+  </div>
+</div>
