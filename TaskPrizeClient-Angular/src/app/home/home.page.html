@@ -2,7 +2,7 @@
   <div class="home-container">
 
     <div class="header">
-      <div id="saldo">SALDO : {{user?.balance}}</div>
+      <app-balance-box [balance]="user?.balance"></app-balance-box>
       <div id="loja">
         <ion-button fill="clear" (click)="goShop()">
           <img src="../../assets/icon/cifrao.png" alt="loja" width="45" height="45" />
@@ -19,7 +19,8 @@
       </div>
     </div>
     
-    <ion-button class="add-button" (click)="addTask()">+</ion-button>
+    
+    <app-add-button [onClick]="addTask"></app-add-button>
 
   </div>
 </ion-content>

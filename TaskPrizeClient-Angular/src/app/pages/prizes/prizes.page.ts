@@ -5,13 +5,15 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, NavController } from '@ion
 import { IonicModule } from '@ionic/angular';
 import { PrizeCardComponent } from 'src/app/components/prize-card/prize-card.component';
 import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
+import { AddButtonComponent } from "../../components/add-button/add-button.component";
+import { BalanceBoxComponent } from "../../components/balance-box/balance-box.component";
 
 @Component({
   selector: 'app-prizes',
   templateUrl: './prizes.page.html',
   styleUrls: ['./prizes.page.scss'],
   standalone: true,
-  imports: [IonicModule,PrizeCardComponent, CommonModule]
+  imports: [IonicModule, PrizeCardComponent, CommonModule, AddButtonComponent, BalanceBoxComponent]
 })
 export class PrizesPage implements OnInit {
 
@@ -23,7 +25,7 @@ private taskPrizeApi = inject(TaskPrizeApiService)
  goBack(){
     this.navCtrl.navigateForward('home');
   }
- addPrize(){
+ addPrize = () => {
     this.navCtrl.navigateForward('prize-add');
   }
 

@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 import { FormBoxComponent } from "../components/form-box/form-box.component";
 import { TaskCardComponent } from "../components/task-card/task-card.component";
 import { TaskPrizeApiService } from '../services/task-prize-api.service';
+import { BalanceBoxComponent } from '../components/balance-box/balance-box.component';
+import { AddButtonComponent } from '../components/add-button/add-button.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonicModule, CommonModule, TaskCardComponent],
+  imports: [IonicModule, CommonModule, TaskCardComponent,BalanceBoxComponent,AddButtonComponent],
 })
 export class HomePage implements OnInit {
 
@@ -39,9 +41,9 @@ export class HomePage implements OnInit {
    // }
   }
 
-  addTask(){
+  addTask = () => {
     this.navCtrl.navigateForward('task-add');
-  }
+  };
   goShop(){
     this.navCtrl.navigateForward('prizes');
   }

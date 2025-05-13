@@ -1,6 +1,7 @@
 package com.taskprize.controller;
 
 import com.taskprize.dto.TaskRequestDTO;
+import com.taskprize.model.Prize;
 import com.taskprize.model.Task;
 import com.taskprize.model.User;
 import com.taskprize.repository.TaskRepository;
@@ -69,6 +70,16 @@ public class TaskController {
 
         }
         return ResponseEntity.ok(updatedTask);
+    }
+    @PutMapping("/{prize_id}")
+    public ResponseEntity<Void> updatePrize(@PathVariable Long taskId, @RequestBody Task taskDetails) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setTitle(taskDetails.getTitle());
+        task.setDescription(taskDetails.getDescription());
+        task.setPayment(taskDetails.getPayment());
+        taskRepository.save(task);
+        return ResponseEntity.ok().build();
     }
     // Deletar uma tarefa
     @DeleteMapping("/{taskId}")

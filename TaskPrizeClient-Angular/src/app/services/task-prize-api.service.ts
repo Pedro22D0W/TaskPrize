@@ -89,7 +89,7 @@ export class TaskPrizeApiService {
   }
   async rescuePrize(prize_id:any) {
     const token = localStorage.getItem('auth_token');
-    const response = await axios.delete(`${this.apiUrl}/api/prizes/${prize_id}`, {
+    const response = await axios.delete(`${this.apiUrl}/api/prizes/rescue/${prize_id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
