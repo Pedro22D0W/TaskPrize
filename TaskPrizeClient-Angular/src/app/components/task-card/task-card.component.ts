@@ -10,11 +10,15 @@ import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 })
 export class TaskCardComponent {
 
-  @Input() task: any;
+@Input() task: any;
+@Input() onClick!: (taskId: number) => Promise<void> | void;
+
+oniClick(i:number){
+  console.log(this.task)
+}
+
   private taskPrizeApi = inject(TaskPrizeApiService)
   constructor() { }
-  regProgress() {
-     const response = this.taskPrizeApi.upDateProgress(this.task.taskId);
-     console.log(response);
-    }
+
+ 
 }

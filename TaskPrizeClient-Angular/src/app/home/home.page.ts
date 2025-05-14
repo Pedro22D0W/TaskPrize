@@ -34,12 +34,7 @@ export class HomePage implements OnInit {
       console.error('Erro ao buscar usuário:', error);
     }
   }
-  constructor() {
-    console.log(localStorage.getItem("auth_token"))
-    //if (!localStorage.getItem("auth_token")) {
-   // this.navCtrl.navigateForward('/login');
-   // }
-  }
+  constructor() {}
 
   addTask = () => {
     this.navCtrl.navigateForward('task-add');
@@ -47,4 +42,13 @@ export class HomePage implements OnInit {
   goShop(){
     this.navCtrl.navigateForward('prizes');
   }
+  
+  regProgress = async (taskId: number) => {
+    console.log(this.tasks)
+    const updatedTask = await this.taskPrizeApi.upDateProgress(taskId);
+    this.tasks = this.tasks.map(t => 
+      t.taskId === updatedTask.taskId ? updatedTask : t
+    );
+  }
+
 }

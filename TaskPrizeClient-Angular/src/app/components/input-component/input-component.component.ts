@@ -5,7 +5,7 @@ import { IonItem, IonInput, IonLabel } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-input-component',
-  imports: [CommonModule, FormsModule, IonItem, IonInput, IonLabel],
+  imports: [CommonModule, FormsModule],
   templateUrl: './input-component.component.html',
   styleUrls: ['./input-component.component.scss'],
 })
