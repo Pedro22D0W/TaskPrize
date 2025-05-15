@@ -50,5 +50,12 @@ export class HomePage implements OnInit {
       t.taskId === updatedTask.taskId ? updatedTask : t
     );
   }
-
+  async deleteTask(taskId: number) {
+    try {
+      await this.taskPrizeApi.deleteTask(taskId);
+      this.tasks = this.tasks.filter(t => t.taskId !== taskId);
+    } catch (error) {
+      console.error('Erro ao deletar task:', error);
+    }
+  }
 }

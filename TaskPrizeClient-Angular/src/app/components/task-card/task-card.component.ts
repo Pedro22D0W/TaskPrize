@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 
@@ -11,11 +11,19 @@ import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 export class TaskCardComponent {
 
 @Input() task: any;
+@Output() progressUpdated = new EventEmitter<number>();
+@Output() taskDeleted = new EventEmitter<number>();
 @Input() onClick!: (taskId: number) => Promise<void> | void;
 
-oniClick(i:number){
-  console.log(this.task)
-}
+handleClick() {
+    this.progressUpdated.emit(this.task.taskId);  // 👈 Emite o ID
+  }
+
+  deleteTask() {
+    if (this.task?.taskId) {
+      this.taskDeleted.emit(this.task.taskId);
+    }
+  }
 
   private taskPrizeApi = inject(TaskPrizeApiService)
   constructor() { }

@@ -42,5 +42,13 @@ private taskPrizeApi = inject(TaskPrizeApiService)
       console.error('Erro ao buscar usuário:', error);
     }
   }
+  async deletePrize(prize_id: number) {
+    try {
+      await this.taskPrizeApi.deletePrize(prize_id);
+      this.prizes = this.prizes.filter(t => t.prize_id !== prize_id);
+    } catch (error) {
+      console.error('Erro ao deletar task:', error);
+    }
+  }
 
 }

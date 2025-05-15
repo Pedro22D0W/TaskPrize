@@ -59,6 +59,24 @@ export class TaskPrizeApiService {
     });
     return response.data;
   }
+  async deleteTask(id: any){
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.delete(`${this.apiUrl}/api/tasks/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  }
+  async deletePrize(id: any){
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.delete(`${this.apiUrl}/api/prizes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  }
   async getUser() {
     const token = localStorage.getItem('auth_token');
     const response = await axios.get(`${this.apiUrl}/api/users/user-details`, {
