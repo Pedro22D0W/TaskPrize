@@ -29,6 +29,14 @@ export const routes: Routes = [
     path: 'prize-add',
     loadComponent: () => import('./pages/prize-add/prize-add.page').then( m => m.PrizeAddPage)
   },
+  {
+    path: 'task-edit',
+    loadComponent: () => import('./pages/task-edit/task-edit.page').then( m => m.TaskEditPage)
+  },
+  {
+    path: 'prize-edit',
+    loadComponent: () => import('./pages/prize-edit/prize-edit.page').then( m => m.PrizeEditPage)
+  },
 
 
 ];

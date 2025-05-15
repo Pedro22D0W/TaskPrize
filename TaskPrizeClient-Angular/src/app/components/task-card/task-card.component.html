@@ -16,11 +16,11 @@
   
 
   <div class="footer">
-    <a size="small" class="brutalist-card__button brutalist-card__button--mark" (click)="onClick(task.taskId)">PROGREDIR {{task?.current_progress}}/{{task.progress}}</a>
+    <a size="small" class="brutalist-card__button brutalist-card__button--mark" (click)="handleClick()">PROGREDIR {{task?.current_progress}}/{{task.progress}}</a>
     <div class="edit-delete_container">
       
         <img src="../../assets/icon/lixeira.png" alt="deletar" width="30" height="30" (click)="deleteTask()" />
-        <img src="../../assets/icon/editar.png" alt="editar" width="30" height="30" (click)="onClick(task.taskId)" />
+        <img src="../../assets/icon/editar.png" alt="editar" width="30" height="30" (click)="editTask(task)" />
      
     </div>
   </div>

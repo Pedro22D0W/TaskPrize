@@ -59,6 +59,34 @@ export class TaskPrizeApiService {
     });
     return response.data;
   }
+  async taskEdit(id: any,title: string, description: string, progress: number, current_progress: number, payment: number) {
+  const token = localStorage.getItem('auth_token');
+  const response = await axios.put(`${this.apiUrl}/api/tasks/${id}`,  {
+        title,
+        description,
+        current_progress,
+        progress,
+        payment,
+      }, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
+  async prizeEdit(id: any,title: string, description: string, cost: number) {
+  const token = localStorage.getItem('auth_token');
+  const response = await axios.put(`${this.apiUrl}/api/prizes/${id}`,  {
+        title,
+        description,
+        cost
+      }, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+}
   async deleteTask(id: any){
     const token = localStorage.getItem('auth_token');
     const response = await axios.delete(`${this.apiUrl}/api/tasks/${id}`, {

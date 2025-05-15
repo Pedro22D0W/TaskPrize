@@ -49,6 +49,9 @@ export class HomePage implements OnInit {
     this.tasks = this.tasks.map(t => 
       t.taskId === updatedTask.taskId ? updatedTask : t
     );
+    if (updatedTask.status == true) {
+      this.user.balance = this.user.balance + updatedTask.payment
+    }
   }
   async deleteTask(taskId: number) {
     try {

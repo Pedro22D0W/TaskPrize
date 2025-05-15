@@ -1,0 +1,23 @@
+<ion-content fullscreen="true">
+  <div class="header">
+      <div id="voltar">
+        <ion-button fill="clear" (click)="goBack()">
+          <img src="../../assets/icon/voltar.png" alt="loja" width="45" height="45" />
+        </ion-button>
+      </div>
+    </div>
+  <div class="container">
+    <app-form-box>
+
+      <app-input-component [label]="'Titulo'" [type]="'text'" [(model)]="title"></app-input-component>
+      <app-input-component [label]="'Descrição'" [type]="'text'" [(model)]="description"></app-input-component>
+      <app-input-component [label]="'Etapa atual'" [type]="'number'" [(model)]="current_progress"></app-input-component>
+      <app-input-component [label]="'Etapas'" [type]="'number'" [(model)]="progress"></app-input-component>
+      <app-input-component [label]="'Valor'" [type]="'number'" [(model)]="payment"></app-input-component>
+
+      <div class="buttons">
+        <app-submit-button [label]="'EDITAR TASK'" [onClick]="taskEdit"></app-submit-button>
+      </div>
+    </app-form-box>
+  </div>
+</ion-content>

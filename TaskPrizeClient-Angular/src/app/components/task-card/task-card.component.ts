@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 
 @Component({
@@ -11,12 +11,13 @@ import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 export class TaskCardComponent {
 
 @Input() task: any;
+private navCtrl = inject(NavController);
 @Output() progressUpdated = new EventEmitter<number>();
 @Output() taskDeleted = new EventEmitter<number>();
-@Input() onClick!: (taskId: number) => Promise<void> | void;
+
 
 handleClick() {
-    this.progressUpdated.emit(this.task.taskId);  // 👈 Emite o ID
+    this.progressUpdated.emit(this.task.taskId);
   }
 
   deleteTask() {
@@ -24,6 +25,11 @@ handleClick() {
       this.taskDeleted.emit(this.task.taskId);
     }
   }
+  editTask(task: any) {
+  this.navCtrl.navigateForward('task-edit', {
+    state: { task }
+  });
+}
 
   private taskPrizeApi = inject(TaskPrizeApiService)
   constructor() { }
