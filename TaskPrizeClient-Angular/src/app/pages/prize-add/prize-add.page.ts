@@ -28,10 +28,10 @@ export class PrizeAddPage {
   goBack(){
     this.navCtrl.navigateForward('prizes');
   }
-  addPrize(){
+  addPrize= () => {
     try {
       this.taskPrizeApiService.prize_add(this.title,this.description,this.cost)
-      this.navCtrl.navigateForward('/home');
+      this.navCtrl.navigateForward('/prizes');
 
     } catch (error) {
       console.log(error);

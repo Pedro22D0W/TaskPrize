@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 
 
@@ -11,7 +11,9 @@ import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
 })
 export class PrizeCardComponent {
 @Input() prize: any;
+private navCtrl = inject(NavController);
 @Output() prizeDeleted = new EventEmitter<number>();
+@Output() prizeEdited = new EventEmitter<number>();
 private taskPrizeApi = inject(TaskPrizeApiService)
 
 rescuePrize() {
@@ -22,10 +24,10 @@ deletePrize() {
       this.prizeDeleted.emit(this.prize.prize_id);
     }
   }
-editPrize() {
-    if (this.prize?.taskId) {
-      this.prizeDeleted.emit(this.prize.prize_id);
-    }
-  }
+ editPrize(prize: any) {
+  this.navCtrl.navigateForward('prize-edit', {
+    state: { prize }
+  });
+}
 
 }

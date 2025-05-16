@@ -22,7 +22,7 @@ export class PrizeEditPage implements OnInit {
   private router = inject(Router);
   private taskPrizeApiService = inject(TaskPrizeApiService);
 
-  // Dados da task
+  
   prize: any = {};
 
   // Campos do formulário
@@ -38,10 +38,10 @@ export class PrizeEditPage implements OnInit {
     console.log(this.prize)
 
     if (this.prize) {
-      // Preenche os campos com os valores atuais
+     
       this.title = this.prize.title;
       this.description = this.prize.description;
-      this.cost = this.prize.current_progress;
+      this.cost = this.prize.cost;
     }
   }
 
