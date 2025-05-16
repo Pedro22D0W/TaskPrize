@@ -1,4 +1,7 @@
-<ion-item class="input">
-  <ion-label position="stacked">{{ label }}</ion-label>
-  <ion-input [(ngModel)]="model" [type]="type"></ion-input>
-</ion-item>
+<div class="brutalist-container">
+  <input
+    [(ngModel)]="model" [type]="type"
+    class="brutalist-input smooth-type"
+  />
+  <label class="brutalist-label">{{ label }}</label>
+</div>

@@ -11,11 +11,12 @@
 
       <app-input-component [label]="'Titulo'" [type]="'text'" [(model)]="title"></app-input-component>
       <app-input-component [label]="'Descrição'" [type]="'text'" [(model)]="description"></app-input-component>
+      <app-input-component [label]="'Etapa atual'" [type]="'number'" [(model)]="current_progress"></app-input-component>
       <app-input-component [label]="'Etapas'" [type]="'number'" [(model)]="progress"></app-input-component>
       <app-input-component [label]="'Valor'" [type]="'number'" [(model)]="payment"></app-input-component>
 
       <div class="buttons">
-        <app-submit-button [label]="'ADICIONAR TASK'" [onClick]="addTask"></app-submit-button>
+        <app-submit-button [label]="'EDITAR TASK'" [onClick]="taskEdit"></app-submit-button>
       </div>
     </app-form-box>
   </div>

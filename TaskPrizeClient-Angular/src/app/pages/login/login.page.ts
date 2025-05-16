@@ -20,17 +20,7 @@ export class LoginPage {
   email: string = '';
   senha: string = '';
 
-  constructor() {
-    
-    effect(() => {
-      const token = this.auth.token();
-      console.log('Token atualizado no contexto:', token);
-      if (token) {
-        this.navCtrl.navigateForward('/home');
-        
-      }
-    });
-  }
+  constructor() {}
 
   async sign() {
     this.auth.login(this.email, this.senha).then(response => {

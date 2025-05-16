@@ -1,4 +1,11 @@
 <ion-content class="ion-padding cadastro-content" scroll-y="true" fullscreen="true">
+  <div class="header">
+      <div id="voltar">
+        <ion-button fill="clear" (click)="goBack()">
+          <img src="../../assets/icon/voltar.png" alt="loja" width="45" height="45" />
+        </ion-button>
+      </div>
+    </div>
   <div class="container">
     <app-form-box>
 
@@ -8,7 +15,7 @@
       
 
       <div class="buttons">
-        <ion-button expand="block" (click)="addPrize()">ADICIONAR RECOMPENSA</ion-button>
+        <app-submit-button [label]="'ADICIONAR RECOMPENSA'" [onClick]="addPrize"></app-submit-button>
       </div>
     </app-form-box>
   </div>

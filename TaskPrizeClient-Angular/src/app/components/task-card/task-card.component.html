@@ -1,18 +1,27 @@
-<div class="task-card">
-  <div class="header">
-    <div class="title">{{task?.title}}</div>
-    <span class="reward">{{task?.payment}} $</span>
+<div class="brutalist-card">
+  <div class="brutalist-card__header">
+    <div class="brutalist-card__alert">{{task?.title}}</div>
+    
+      
+      <span class="brutalist-card__alert">{{task?.payment}} $</span>
+    
+    
 
   </div>
   
 
-  <div class="description">
+  <div class="brutalist-card__message">
     {{task?.description}}
   </div>
+  
 
   <div class="footer">
-    <ion-button size="small" class="progress-button" (click)="regProgress()">REGISTRAR PROGRESSO</ion-button>
-    <span class="progress">{{task?.current_progress}}/{{task.progress}}</span>
-    
+    <a size="small" class="brutalist-card__button brutalist-card__button--mark" (click)="handleClick()">PROGREDIR {{task?.current_progress}}/{{task.progress}}</a>
+    <div class="edit-delete_container">
+      
+        <img src="../../assets/icon/lixeira.png" alt="deletar" width="30" height="30" (click)="deleteTask()" />
+        <img src="../../assets/icon/editar.png" alt="editar" width="30" height="30" (click)="editTask(task)" />
+     
+    </div>
   </div>
 </div>

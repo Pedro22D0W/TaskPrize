@@ -5,12 +5,13 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { InputComponent } from 'src/app/components/input-component/input-component.component';
 import { FormBoxComponent } from 'src/app/components/form-box/form-box.component';
 import { TaskPrizeApiService } from 'src/app/services/task-prize-api.service';
+import { SubmitButtonComponent } from "../../components/submit-button/submit-button.component";
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.page.html',
   styleUrls: ['./task-add.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule,InputComponent,FormBoxComponent]
+  imports: [IonicModule, CommonModule, FormsModule, InputComponent, FormBoxComponent, SubmitButtonComponent]
 })
 export class TaskAddPage {
   private navCtrl = inject(NavController);
@@ -25,8 +26,10 @@ export class TaskAddPage {
     private taskPrizeApiService: TaskPrizeApiService,
 
   ) {}
-
-  addTask(){
+  goBack(){
+    this.navCtrl.navigateForward('home');
+  }
+  addTask = () => {
     try {
       this.taskPrizeApiService.task_add(this.title,this.description,this.progress,this.payment,this.status)
       this.navCtrl.navigateForward('/home');

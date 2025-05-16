@@ -70,7 +70,7 @@ public class PrizeController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{prize_id}")
+    @DeleteMapping("rescue/{prize_id}")
     public ResponseEntity<String> rescuePrize(@PathVariable Long prize_id,HttpServletRequest request) {
         Long userId = tokenService.rescueUserId(request);
          User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
@@ -84,6 +84,11 @@ public class PrizeController {
          else{
             return ResponseEntity.internalServerError().build();
          }   
+    }
+    @DeleteMapping("/{prize_id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long prize_id) {
+        prizeRepository.deleteById(prize_id);
+        return ResponseEntity.noContent().build();
     }
     @GetMapping("/user-prizes")
     public List<Prize> PrizesByUserId(HttpServletRequest request) {

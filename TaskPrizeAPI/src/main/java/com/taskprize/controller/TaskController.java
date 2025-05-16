@@ -1,6 +1,8 @@
 package com.taskprize.controller;
 
+import com.taskprize.dto.TaskEditRequestDTO;
 import com.taskprize.dto.TaskRequestDTO;
+import com.taskprize.model.Prize;
 import com.taskprize.model.Task;
 import com.taskprize.model.User;
 import com.taskprize.repository.TaskRepository;
@@ -50,12 +52,8 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Atualizar uma tarefa
-    @PutMapping("/{taskId}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long taskId, @RequestBody Task taskDetails) {
-        Task updatedTask = taskService.updateTask(taskId, taskDetails);
-        return ResponseEntity.ok(updatedTask);
-    }
+    
+   
     @PutMapping("updateProgress/{taskId}")
     public ResponseEntity<Task> updateTaskProgress(HttpServletRequest request,@PathVariable Long taskId) {
         Task updatedTask = taskService.updateTaskProgress(taskId);
@@ -69,6 +67,18 @@ public class TaskController {
 
         }
         return ResponseEntity.ok(updatedTask);
+    }
+    @PutMapping("/{taskId}")
+    public ResponseEntity<Void> updatePrize(@PathVariable Long taskId, @RequestBody  TaskEditRequestDTO taskDetails) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setTitle(taskDetails.title());
+        task.setCurrent_progress(taskDetails.current_progress());
+        task.setProgress(taskDetails.progress());
+        task.setDescription(taskDetails.description());
+        task.setPayment(taskDetails.payment());
+        taskRepository.save(task);
+        return ResponseEntity.ok().build();
     }
     // Deletar uma tarefa
     @DeleteMapping("/{taskId}")
