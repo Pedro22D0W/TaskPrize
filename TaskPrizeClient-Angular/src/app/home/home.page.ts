@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {IonicModule, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormBoxComponent } from "../components/form-box/form-box.component";
 import { TaskCardComponent } from "../components/task-card/task-card.component";
 import { TaskPrizeApiService } from '../services/task-prize-api.service';
 import { BalanceBoxComponent } from '../components/balance-box/balance-box.component';
@@ -14,7 +13,7 @@ import { AddButtonComponent } from '../components/add-button/add-button.componen
   styleUrls: ['home.page.scss'],
   imports: [IonicModule, CommonModule, TaskCardComponent,BalanceBoxComponent,AddButtonComponent],
 })
-export class HomePage implements OnInit {
+export class HomePage  {
 
   
   private auth = inject(AuthService);
@@ -23,7 +22,7 @@ export class HomePage implements OnInit {
   user:any;
   tasks: any[] = [];
 
-  async ngOnInit() {
+  async ionViewWillEnter() {
     try {
       this.user = await this.taskPrizeApi.getUser();
       this.tasks = await this.taskPrizeApi.getUserTasks();
@@ -44,15 +43,26 @@ export class HomePage implements OnInit {
   }
   
   regProgress = async (taskId: number) => {
-    console.log(this.tasks)
+  try {
     const updatedTask = await this.taskPrizeApi.upDateProgress(taskId);
-    this.tasks = this.tasks.map(t => 
-      t.taskId === updatedTask.taskId ? updatedTask : t
-    );
-    if (updatedTask.status == true) {
-      this.user.balance = this.user.balance + updatedTask.payment
+
+    if (updatedTask) {
+      this.tasks = this.tasks.map(task =>
+        task.taskId === updatedTask.taskId
+          ? { ...task, current_progress: updatedTask.current_progress, status: updatedTask.status }
+          : task
+      );
+
+      if (updatedTask.status === true) {
+        this.user.balance += updatedTask.payment;
+        this.tasks = this.tasks.filter(t => t.taskId !== updatedTask.taskId);
+      }
     }
+  } catch (error) {
+    console.error('Erro ao atualizar progresso:', error);
   }
+};
+
   async deleteTask(taskId: number) {
     try {
       await this.taskPrizeApi.deleteTask(taskId);

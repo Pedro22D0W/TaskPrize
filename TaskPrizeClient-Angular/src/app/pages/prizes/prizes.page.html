@@ -12,7 +12,7 @@
     <div class="cards-scroll-wrapper">
       <div class="cards-container">
         <ng-container *ngFor="let prize of prizes">
-          <app-prize-card [prize]="prize" (prizeDeleted)="deletePrize($event)"></app-prize-card>
+          <app-prize-card [prize]="prize" (prizeDeleted)="deletePrize($event) "(prizeRescue)="rescuePrize(prize)"></app-prize-card>
         </ng-container>
       </div>
     </div>

@@ -14,10 +14,12 @@ export class PrizeCardComponent {
 private navCtrl = inject(NavController);
 @Output() prizeDeleted = new EventEmitter<number>();
 @Output() prizeEdited = new EventEmitter<number>();
+@Output() prizeRescue = new EventEmitter<number>();
 private taskPrizeApi = inject(TaskPrizeApiService)
 
-rescuePrize() {
-  this.taskPrizeApi.rescuePrize(this.prize.prize_id)
+rescuePrize(prize:any) {
+  //this.taskPrizeApi.rescuePrize(this.prize.prize_id)
+  this.prizeRescue.emit(this.prize.prize_id);
 }
 deletePrize() {
     if (this.prize?.prize_id) {
